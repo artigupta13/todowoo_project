@@ -1,8 +1,14 @@
 {% extends 'todoApp/base.html' %}
 {% block content %}
-<p>current todos</p>
+<br>
 
 
+
+{% if not todos %}
+  Hey {{ username }} ! You don't have any todos.
+
+{% else %}
+<p>Your current todos</p>
 <ul>
   {%  for todo in todos %}
   <li>
@@ -13,5 +19,6 @@
    </li>
   {% endfor %}
   </ul>
+{% endif %}
 
 {% endblock %}

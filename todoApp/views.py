@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request,'todoApp/home.html')
+    username = request.user.username
+    return render(request,'todoApp/home.html',{'username':username})
 
 # Create your views here.
 def signupuser(request):
@@ -37,7 +38,8 @@ def signupuser(request):
 def currenttodos(request):
     todos=Todo.objects.filter(user=request.user,datecompleted__isnull=True)
     #todos=Todo.objects.all()
-    return render(request,'todoApp/currenttodos.html',{'todos':todos})
+    username = request.user.username
+    return render(request,'todoApp/currenttodos.html',{'todos':todos,'username':username})
 
 def loginuser(request):
     if request.method=='GET':
@@ -57,9 +59,9 @@ def logoutuser(request):
         return redirect('home')
 @login_required
 def createtodo(request):
-
+    username = request.user.username
     if request.method=='GET':
-            return render(request,'todoApp/createtodo.html',{'form':(TodoForm())})
+            return render(request,'todoApp/createtodo.html',{'form':(TodoForm()),'username':username})
     else:
         try:
             form=TodoForm(request.POST)
@@ -68,21 +70,22 @@ def createtodo(request):
             newtodo.save()
             return redirect('currenttodos')
         except ValueError:
-            return  render(request,'todo/createtodo.html',{'form':TodoForm(),'error':'Bad Data'})
+            return  render(request,'todo/createtodo.html',{'form':TodoForm(),'error':'Bad Data','username':username})
 @login_required
 def viewtodo(request,todo_pk):
     #todos=Todo.objects.all()
+    username = request.user.username
     todo=get_object_or_404(Todo,pk=todo_pk,user=request.user)
     if request.method=='GET':
         form=TodoForm(instance=todo)
-        return render(request,'todoApp/viewtodo.html',{'todo':todo,'form':form})
+        return render(request,'todoApp/viewtodo.html',{'todo':todo,'form':form,'username':username})
     else:
         try:
             form=TodoForm(request.POST,instance=todo)
             form.save()
             return redirect('currenttodos')
         except ValueError:
-            return render(request,'todoApp/viewtodo.html',{'todo':todo,'form':form,'error':'Bad info'})
+            return render(request,'todoApp/viewtodo.html',{'todo':todo,'form':form,'error':'Bad info','username':username})
 
 @login_required
 def completetodo(request,todo_pk):
@@ -100,6 +103,7 @@ def deletetodo(request,todo_pk):
         return redirect('currenttodos')
 @login_required
 def completedtodos(request):
+    username = request.user.username
     todos=Todo.objects.filter(user=request.user,datecompleted__isnull=False).order_by('-datecompleted')
     #todos=Todo.objects.all()
-    return render(request,'todoApp/completedtodos.html',{'todos':todos})
+    return render(request,'todoApp/completedtodos.html',{'todos':todos,'username':username})
