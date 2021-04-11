@@ -8,19 +8,19 @@
 <th>Date Joined</th><td>{{ profile.date_joined }}</td>
 </tr>
 <tr>
-<th>User name</th><td>{{ profile.username }}</td>
+<th>User name</th><td>{{ profile.username | lower}}</td>
 </tr>
 <tr>
-<th>First Name </th><td>{{ profile.first_name }}</td>
+<th>First Name </th><td>{{ profile.first_name | capfirst}}</td>
 </tr>
 <tr>
-<th>Last Name </th><td>{{ profile.last_name }}</td>
+<th>Last Name </th><td>{{ profile.last_name | capfirst}}</td>
 </tr>
 <tr>
-<th>Email</th><td>{{ profile.email }}</td>
+<th>Email</th><td>{{ profile.email | lower}}</td>
 </tr>
 <tr>
-<th>Last logged in</th><td>{{ profile.last_login }}</td>
+<th>Last logged in</th><td>{{ profile.last_login  }}</td>
 </tr>
 
 </table>
