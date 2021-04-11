@@ -17,7 +17,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-warning ">
 <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">
+    <a class="navbar-brand" href="">
          <img src="{% static 'todoApp/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
         <span>Todo Woo</span>
     </a>
@@ -44,7 +44,7 @@
             {% if user.is_authenticated %}
 
             <li class="nav-item {{ username }}">
-                <a class="nav-link" href="">{{ username}}</a>
+                <a class="nav-link" href="">{{ username | capfirst}}</a>
             </li>
 
                 <li class="nav-item">

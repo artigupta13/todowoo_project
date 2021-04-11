@@ -5,7 +5,7 @@
 
 
 {% if not todos %}
-  Hey {{ username }} ! You don't have any todos.
+  Hey {{ username | capfirst }} ! You don't have any todos.
 
 {% else %}
 <p>Your current todos</p>
