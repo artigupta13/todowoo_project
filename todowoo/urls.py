@@ -39,6 +39,8 @@ urlpatterns = [
     path('todo/<int:todo_pk>/delete',views.deletetodo,name='deletetodo'),
 
     path('password_reset/', views.password_reset, name='password_reset'),
-    
+
+    path('userprofile/', views.userprofile, name='userprofile'),
+
 
 ]

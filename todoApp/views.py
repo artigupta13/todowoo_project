@@ -8,7 +8,11 @@ from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-
+def userprofile(request):
+    # = User.get_short_name(request.user)
+    profile=User.objects.get(username=request.user)
+    username=profile.first_name
+    return render(request,'todoApp/userprofile.html',{'profile':profile,'username':username})
 
 def password_reset(request):
      if request.method=='GET':

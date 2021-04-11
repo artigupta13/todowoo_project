@@ -1,0 +1,29 @@
+{% extends 'todoApp/base.html' %}
+{% block content %}
+<br>
+
+<div class="row justify-content-center mt-5">
+<table>
+<tr>
+<th>Date Joined</th><td>{{ profile.date_joined }}</td>
+</tr>
+<tr>
+<th>User name</th><td>{{ profile.username }}</td>
+</tr>
+<tr>
+<th>First Name </th><td>{{ profile.first_name }}</td>
+</tr>
+<tr>
+<th>Last Name </th><td>{{ profile.last_name }}</td>
+</tr>
+<tr>
+<th>Email</th><td>{{ profile.email }}</td>
+</tr>
+<tr>
+<th>Last logged in</th><td>{{ profile.last_login }}</td>
+</tr>
+
+</table>
+</div>
+
+{% endblock %}

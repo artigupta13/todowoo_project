@@ -44,7 +44,7 @@
             {% if user.is_authenticated %}
 
             <li class="nav-item {{ username }}">
-                <a class="nav-link" href="">{{ username | capfirst}}</a>
+                <a class="nav-link" href="{% url 'userprofile' %}">{{ username | capfirst}}</a>
             </li>
 
                 <li class="nav-item">
